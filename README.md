@@ -24,10 +24,7 @@ $app->get('/', function ($response) {
     return $response;
 });
 
-$app->get('/hello/{name}', function ($name, $response) {
-    $response->getBody()->write("Hello {$name}!");
-    return $response;
-});
+$app->get('/hello/{name}', 'Hello#index');
 
 /**
  * @desc Life is this simple.
