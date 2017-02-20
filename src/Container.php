@@ -47,5 +47,8 @@ class Container extends Katora
                 ->createServerRequest($_SERVER);
         });
         $this->alias('request', 'server_request');
+        foreach ($values as $key => $value) {
+            $this->set($key, $value);
+        }
     }
 }
