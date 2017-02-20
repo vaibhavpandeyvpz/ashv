@@ -83,9 +83,6 @@ class Dispatcher implements ContainerAwareInterface, DispatcherInterface
                 }
             }
             $controller = $this->make($controller, $params);
-            if ($controller instanceof ContainerAwareInterface) {
-                $controller = $controller->withContainer($this->container);
-            }
         }
         if ($this->actionSuffix && ('__invoke' !== $action)) {
             $action .= $this->actionSuffix;

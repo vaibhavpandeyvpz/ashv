@@ -11,6 +11,7 @@
 
 namespace Ashv;
 
+use Interop\Container\ContainerInterface;
 use Phew\ViewInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -18,9 +19,21 @@ use Psr\Http\Message\ResponseInterface;
  * Class ControllerAbstract
  * @package Ashv
  */
-abstract class ControllerAbstract implements ContainerAwareInterface
+abstract class ControllerAbstract
 {
-    use ContainerAwareTrait;
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    /**
+     * ControllerAbstract constructor.
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * @param mixed $data
