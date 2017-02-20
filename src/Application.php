@@ -111,7 +111,7 @@ class Application extends RouteCollection implements MiddlewareInterface, Middle
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
         $router = new Router($this, $this->container->get('path_compiler'));
-        $result = $router->match($request->getMethod(), $request->getUri()->getPath());
+        $result = $router->match($method = $request->getMethod(), $path = $request->getUri()->getPath());
         if ($result->isFound()) {
             $params = $result->getParameters();
             $params['request'] = $request;
@@ -119,9 +119,9 @@ class Application extends RouteCollection implements MiddlewareInterface, Middle
             $dispatcher = $this->container->get('dispatcher');
             return $dispatcher->dispatch($result->getCallback(), $params);
         } elseif ($result->isNotAllowed()) {
-            throw new MethodNotAllowedException();
+            throw new MethodNotAllowedException("Access via '{$method}' method is not allowed on '{$path}' path.");
         }
-        throw new NotFoundException();
+        throw new NotFoundException("Path '{$path}' is not mapped to any page or resource.");
     }
 
     /**

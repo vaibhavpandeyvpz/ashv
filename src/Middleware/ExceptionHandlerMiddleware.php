@@ -34,6 +34,7 @@ class ExceptionHandlerMiddleware implements ContainerAwareInterface, MiddlewareI
         401 => 'You are not authorized to access this page or resource.',
         403 => 'You are not permitted to access this page or resource.',
         404 => 'The page or resource you are looking for does not exist.',
+        405 => 'This page or resource is not accessible via current HTTP method.',
         500 => 'Unfortunately, something went wrong at server.',
     ];
 
