@@ -27,12 +27,12 @@ class Dispatcher implements ContainerAwareInterface, DispatcherInterface
     /**
      * @var string|null
      */
-    protected $controllerSuffix = 'Controller';
+    protected $controllerNamespace;
 
     /**
      * @var string|null
      */
-    protected $namespace;
+    protected $controllerSuffix = 'Controller';
 
     /**
      * @var string
@@ -74,11 +74,13 @@ class Dispatcher implements ContainerAwareInterface, DispatcherInterface
         if ($this->container->has($controller)) {
             $controller = $this->container->get($controller);
         } else {
-            if ($this->namespace && ('\\' !== $controller[0]) && (0 !== strpos($controller, $this->namespace))) {
-                $controller = $this->namespace . '\\' . $controller;
-            }
-            if ($this->controllerSuffix) {
-                $controller .= $this->controllerSuffix;
+            if ('\\' !== $controller[0]) {
+                if ($this->controllerNamespace && (0 !== strpos($controller, $this->controllerNamespace))) {
+                    $controller = $this->controllerNamespace . '\\' . $controller;
+                }
+                if ($this->controllerSuffix) {
+                    $controller .= $this->controllerSuffix;
+                }
             }
             $controller = $this->make($controller, $params);
             if ($controller instanceof ContainerAwareInterface) {
@@ -173,22 +175,22 @@ class Dispatcher implements ContainerAwareInterface, DispatcherInterface
     }
 
     /**
+     * @param string|null $namespace
+     * @return $this
+     */
+    public function setControllerNamespace($namespace)
+    {
+        $this->controllerNamespace = rtrim($namespace, '\\');
+        return $this;
+    }
+
+    /**
      * @param string|null $suffix
      * @return $this
      */
     public function setControllerSuffix($suffix)
     {
         $this->controllerSuffix = $suffix;
-        return $this;
-    }
-
-    /**
-     * @param string|null $namespace
-     * @return $this
-     */
-    public function setDefaultNamespace($namespace)
-    {
-        $this->namespace = rtrim($namespace, '\\');
         return $this;
     }
 }
