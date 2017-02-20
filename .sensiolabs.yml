@@ -1,0 +1,3 @@
+rules:
+    php.dynamically_change_configuration:
+        enabled: false

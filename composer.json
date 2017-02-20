@@ -1,0 +1,40 @@
+{
+  "authors": [{
+    "name": "Vaibhav Pandey",
+    "email": "contact@vaibhavpandey.com"
+  }],
+  "autoload": {
+    "psr-4": {
+      "Ashv\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ashv\\": "tests/"
+    }
+  },
+  "description": "The lean PSR-7/PSR-15 micro-framework, uses vaibhavpandeyvpz/vidyut underneath.",
+  "homepage": "http://vaibhavpandeyvpz.github.io/ashv",
+  "keywords": ["psr-7", "psr-15", "micro", "framework"],
+  "license": "MIT",
+  "name": "vaibhavpandeyvpz/ashv",
+  "require": {
+    "php": "^5.4 || ^7.0",
+    "vaibhavpandeyvpz/katora": "^1.0",
+    "vaibhavpandeyvpz/sandesh": "^1.0",
+    "vaibhavpandeyvpz/tez": "^1.0",
+    "vaibhavpandeyvpz/vidyut": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.0 || ^5.0",
+    "symfony/polyfill-php56": "^1.0",
+    "vaibhavpandeyvpz/jweety": "^1.0",
+    "vaibhavpandeyvpz/phew": "^1.0"
+  },
+  "suggest": {
+    "symfony/polyfill-php56": "",
+    "vaibhavpandeyvpz/jweety": "",
+    "vaibhavpandeyvpz/phew": ""
+  },
+  "type": "library"
+}
