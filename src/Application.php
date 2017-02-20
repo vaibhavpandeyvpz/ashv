@@ -123,4 +123,19 @@ class Application extends RouteCollection implements MiddlewareInterface, Middle
         }
         throw new NotFoundException();
     }
+
+    /**
+     * @param string $path
+     * @param string $controller
+     * @return static
+     */
+    public function resource($path, $controller)
+    {
+        $this->get($path, [$controller, 'list']);
+        $this->get("{$path}/{id}", [$controller, 'index']);
+        $this->post($path, [$controller, 'create']);
+        $this->put("{$path}/{id}", [$controller, 'update']);
+        $this->delete("{$path}/{id}", [$controller, 'delete']);
+        return $this;
+    }
 }
