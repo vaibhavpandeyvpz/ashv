@@ -12,7 +12,6 @@
 namespace Ashv;
 
 use Interop\Container\ContainerInterface;
-use Katora\Container;
 use Tez\RouteCollectionInterface;
 
 /**
